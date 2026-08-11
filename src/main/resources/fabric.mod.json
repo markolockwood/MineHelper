@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "minehelper",
+	"version": "${version}",
+	"name": "MineHelper",
+	"description": "A client-side block finder and highlighter mod for Minecraft",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/minehelper/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.minehelper.MineHelper"
+		],
+		"client": [
+			"com.minehelper.client.MineHelperClient"
+		]
+	},
+	"mixins": [
+		"minehelper.mixins.json",
+		{
+			"config": "minehelper.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
