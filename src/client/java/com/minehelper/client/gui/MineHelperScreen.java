@@ -5,6 +5,7 @@ import com.minehelper.client.feature.autoclicker.AutoClickerFeature;
 import com.minehelper.client.feature.autosprint.AutoSprintFeature;
 import com.minehelper.client.feature.blockfinder.BlockFinderFeature;
 import com.minehelper.client.feature.playeresp.PlayerEspFeature;
+import com.minehelper.client.feature.mobesp.MobEspFeature;
 import net.minecraft.client.gui.components.tabs.TabManager;
 import net.minecraft.client.gui.components.tabs.TabNavigationBar;
 import net.minecraft.client.gui.navigation.ScreenRectangle;
@@ -16,6 +17,7 @@ public class MineHelperScreen extends Screen {
     private final String modVersion;
     private final BlockFinderFeature blockFinderFeature;
     private final PlayerEspFeature playerEspFeature;
+    private final MobEspFeature mobEspFeature;
     private final AutoSprintFeature autoSprintFeature;
     private final AutoClickerFeature autoClickerFeature;
     private TabNavigationBar tabNavigationBar;
@@ -24,6 +26,7 @@ public class MineHelperScreen extends Screen {
     public MineHelperScreen(LocalizationManager lang, String modVersion,
                             BlockFinderFeature blockFinderFeature,
                             PlayerEspFeature playerEspFeature,
+                            MobEspFeature mobEspFeature,
                             AutoSprintFeature autoSprintFeature,
                             AutoClickerFeature autoClickerFeature) {
         super(Component.literal("MineHelper v" + modVersion));
@@ -31,6 +34,7 @@ public class MineHelperScreen extends Screen {
         this.modVersion = modVersion;
         this.blockFinderFeature = blockFinderFeature;
         this.playerEspFeature = playerEspFeature;
+        this.mobEspFeature = mobEspFeature;
         this.autoSprintFeature = autoSprintFeature;
         this.autoClickerFeature = autoClickerFeature;
     }
@@ -43,7 +47,7 @@ public class MineHelperScreen extends Screen {
 
         GeneralTab generalTab     = new GeneralTab(lang, modVersion, autoSprintFeature, autoClickerFeature);
         BlockFinderTab bfTab      = new BlockFinderTab(lang, blockFinderFeature);
-        PlayerEspTab espTab       = new PlayerEspTab(lang, playerEspFeature);
+        PlayerEspTab espTab       = new PlayerEspTab(lang, playerEspFeature, mobEspFeature);
 
         tabNavigationBar = TabNavigationBar.builder(tabManager, width)
             .addTabs(generalTab, bfTab, espTab)

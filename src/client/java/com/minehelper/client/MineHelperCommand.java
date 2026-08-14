@@ -31,6 +31,7 @@ public class MineHelperCommand implements ClientCommandRegistrationCallback {
                         new MineHelperScreen(lang, version,
                             MineHelperClient.getBlockFinderFeature(),
                             MineHelperClient.getPlayerEspFeature(),
+                            MineHelperClient.getMobEspFeature(),
                             MineHelperClient.getAutoSprintFeature(),
                             MineHelperClient.getAutoClickerFeature())
                     );

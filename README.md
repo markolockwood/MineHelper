@@ -1,6 +1,6 @@
 # MineHelper
 
-A client-side Fabric mod for Minecraft 26.1.2 with quality-of-life features: **Block Finder** (scans and highlights target blocks through walls), **Player ESP** (highlights players through walls), **Auto Sprint** (automatic sprinting), and **Auto Clicker** (humanized clicking automation).
+A client-side Fabric mod for Minecraft 26.1.2 with quality-of-life features: **Block Finder** (scans and highlights target blocks through walls), **Player ESP** (highlights players through walls), **Mob ESP** (highlights mobs through walls), **Auto Sprint** (automatic sprinting), **Auto Clicker** (humanized clicking automation), and **Custom Key Binds** (bind any command to any key).
 
 > **README на русском:** [README_RU.md](README_RU.md)
 
@@ -35,6 +35,34 @@ Player highlighting system with multiple render modes and team color support:
 - Configurable radius (16-256 blocks)
 - Both modes render through walls with no depth test
 
+### Mob ESP
+
+Mob highlighting system with filtering and color modes:
+
+- **Two render modes:**
+  - **AABB** — lightweight box outline around mob hitbox
+  - **Glow** — full vanilla entity outline with blur effect
+- **Mob filtering:**
+  - **All** — show all mobs (hostile, neutral, passive)
+  - **Hostile** — only hostile mobs (zombies, skeletons, etc.)
+  - **Passive** — only passive mobs (cows, pigs, etc.)
+- **Two color modes:**
+  - **Solid** — single customizable color for all mobs
+  - **By Type** — color-coded by mob behavior (hostile: red, neutral: yellow, passive: green)
+- Configurable radius (16-256 blocks)
+- Renders through walls
+
+### Custom Key Binds
+
+Flexible system for binding any client command to any key:
+
+- Bind commands to keyboard keys or mouse buttons
+- GUI-based management via `/mhbind` command
+- Add, edit, and delete binds on the fly
+- Binds persist between game sessions
+- No need to restart the game
+- Perfect for quick access to frequently used commands
+
 ### Auto Sprint
 
 Automatic sprinting when moving forward — a standard accessibility feature:
@@ -67,7 +95,7 @@ Humanized auto-clicking for PvP and mining:
 Access via `/minehelper` command. Three tabs:
 - **General** — language selection, Auto Sprint toggle, Auto Clicker toggle with CPS control
 - **Block Finder** — toggle, target block, radius, color, line width
-- **Player ESP** — toggle, render mode (AABB/Glow), color mode (Solid/Team), color picker, radius
+- **Player/Mob ESP** — toggle, render mode (AABB/Glow), color mode (Solid/Team/By Type), color picker, radius, mob filter
 
 ## Commands
 
@@ -121,6 +149,26 @@ All commands are client-side only.
 /mhesp radius 128
 ```
 
+### Mob ESP
+
+| Command | Description |
+|---|---|
+| `/mhmobesp` or `/mhmobesp toggle` | Enable / disable Mob ESP |
+| `/mhmobesp mode <aabb\|glow>` | Set render mode (AABB: lightweight boxes, Glow: vanilla outline with blur) |
+| `/mhmobesp colormode <solid\|by_type>` | Set color mode (Solid: one color, By Type: color by mob behavior) |
+| `/mhmobesp filter <all\|hostile\|passive>` | Set mob filter (All: all mobs, Hostile: only hostile, Passive: only passive) |
+| `/mhmobesp color <r> <g> <b>` | Set solid color (0–255 per channel) |
+| `/mhmobesp radius <16–256>` | Set detection radius in blocks (default: 64) |
+
+**Examples:**
+```
+/mhmobesp toggle
+/mhmobesp mode glow
+/mhmobesp colormode by_type
+/mhmobesp filter hostile
+/mhmobesp radius 96
+```
+
 ### Auto Sprint
 
 | Command | Description |
@@ -134,6 +182,25 @@ All commands are client-side only.
 | `/mhclick` | Toggle Auto Clicker on/off |
 
 **Note:** CPS is adjusted via GUI in the General tab (±/− buttons).
+
+### Custom Key Binds
+
+| Command | Description |
+|---|---|
+| `/mhbind` | Open key binds management GUI |
+
+**GUI Features:**
+- View all configured key binds
+- Add new binds (click button, press key, enter command, save)
+- Delete existing binds
+- Supports keyboard and mouse buttons
+
+**Examples:**
+```
+/mhbind
+# Then click "+ Add Bind", press F6, type "blockfinder toggle", click Save
+# Now F6 toggles Block Finder on/off
+```
 
 ## Configuration
 
@@ -200,6 +267,24 @@ Settings are saved automatically to `.minecraft/config/`:
 |---|---|
 | `enabled` | Auto Clicker state (true/false) |
 | `cps` | Clicks per second (1–20, with ±30% randomization) |
+
+**`mh_keybinds.json`:**
+```json
+{
+  "binds": [
+    {
+      "keyCode": 290,
+      "command": "blockfinder toggle"
+    }
+  ]
+}
+```
+
+| Field | Description |
+|---|---|
+| `binds` | Array of key bind objects |
+| `keyCode` | GLFW key code (see [GLFW Key Codes](https://www.glfw.org/docs/latest/group__keys.html)) |
+| `command` | Command to execute (without leading `/`) |
 
 ## Building from source
 

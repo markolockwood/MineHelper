@@ -10,6 +10,10 @@ import com.minehelper.client.feature.blockfinder.BlockFinderCommand;
 import com.minehelper.client.feature.blockfinder.BlockFinderFeature;
 import com.minehelper.client.feature.playeresp.PlayerEspCommand;
 import com.minehelper.client.feature.playeresp.PlayerEspFeature;
+import com.minehelper.client.feature.mobesp.MobEspCommand;
+import com.minehelper.client.feature.mobesp.MobEspFeature;
+import com.minehelper.client.feature.keybind.KeyBindCommand;
+import com.minehelper.client.feature.keybind.KeyBindFeature;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
@@ -25,8 +29,10 @@ public class MineHelperClient implements ClientModInitializer {
     private static FeatureManager featureManager;
     private static BlockFinderFeature blockFinderFeature;
     private static PlayerEspFeature playerEspFeature;
+    private static MobEspFeature mobEspFeature;
     private static AutoSprintFeature autoSprintFeature;
     private static AutoClickerFeature autoClickerFeature;
+    private static KeyBindFeature keyBindFeature;
     private static KeyMapping blockFinderToggleKey;
     private static LocalizationManager localization;
     private static String modVersion;
@@ -49,11 +55,17 @@ public class MineHelperClient implements ClientModInitializer {
         playerEspFeature = new PlayerEspFeature(localization);
         featureManager.register(playerEspFeature);
 
+        mobEspFeature = new MobEspFeature(localization);
+        featureManager.register(mobEspFeature);
+
         autoSprintFeature = new AutoSprintFeature(localization);
         featureManager.register(autoSprintFeature);
 
         autoClickerFeature = new AutoClickerFeature(localization);
         featureManager.register(autoClickerFeature);
+
+        keyBindFeature = new KeyBindFeature(localization);
+        featureManager.register(keyBindFeature);
 
         ClientCommandRegistrationCallback.EVENT.register(
             new BlockFinderCommand(blockFinderFeature.getScanner(), blockFinderFeature.getConfig(), localization)
@@ -62,10 +74,16 @@ public class MineHelperClient implements ClientModInitializer {
             new PlayerEspCommand(playerEspFeature, localization)
         );
         ClientCommandRegistrationCallback.EVENT.register(
+            new MobEspCommand(mobEspFeature, localization)
+        );
+        ClientCommandRegistrationCallback.EVENT.register(
             new AutoSprintCommand(autoSprintFeature, localization)
         );
         ClientCommandRegistrationCallback.EVENT.register(
             new AutoClickerCommand(autoClickerFeature, localization)
+        );
+        ClientCommandRegistrationCallback.EVENT.register(
+            new KeyBindCommand(keyBindFeature)
         );
         ClientCommandRegistrationCallback.EVENT.register(
             new MineHelperCommand(localization, modVersion)
@@ -101,8 +119,10 @@ public class MineHelperClient implements ClientModInitializer {
     public static FeatureManager getFeatureManager()       { return featureManager; }
     public static BlockFinderFeature getBlockFinderFeature() { return blockFinderFeature; }
     public static PlayerEspFeature getPlayerEspFeature()   { return playerEspFeature; }
+    public static MobEspFeature getMobEspFeature()         { return mobEspFeature; }
     public static AutoSprintFeature getAutoSprintFeature() { return autoSprintFeature; }
     public static AutoClickerFeature getAutoClickerFeature() { return autoClickerFeature; }
+    public static KeyBindFeature getKeyBindFeature()       { return keyBindFeature; }
     public static LocalizationManager getLocalization()    { return localization; }
     public static String getModVersion()                   { return modVersion; }
 }

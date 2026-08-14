@@ -89,6 +89,22 @@ public class LocalizationManager {
         en.put("playeresp.color", "§7Color: §bRGB(%d, %d, %d)");
         en.put("playeresp.radius", "Radius: §b%d");
 
+        // MobESP
+        en.put("mobesp.enabled", "§a✓ MobESP enabled");
+        en.put("mobesp.disabled", "§c✗ MobESP disabled");
+        en.put("mobesp.mode.set", "§eRender mode: §b%s");
+        en.put("mobesp.colormode.set", "§eColor mode: §b%s");
+        en.put("mobesp.filter.set", "§eMob filter: §b%s");
+        en.put("mobesp.color.set", "§eColor: §bRGB(%d, %d, %d)");
+        en.put("mobesp.radius.set", "§eRadius: §b%d");
+        en.put("mobesp.toggle", "Toggle");
+        en.put("mobesp.status", "§7Status: %s");
+        en.put("mobesp.mode", "§7Render mode: §b%s");
+        en.put("mobesp.colormode", "§7Color mode: §b%s");
+        en.put("mobesp.filter", "§7Filter: §b%s");
+        en.put("mobesp.color", "§7Color: §bRGB(%d, %d, %d)");
+        en.put("mobesp.radius", "Radius: §b%d");
+
         // AutoSprint
         en.put("autosprint.enabled", "§a✓ AutoSprint enabled");
         en.put("autosprint.disabled", "§c✗ AutoSprint disabled");
@@ -162,6 +178,22 @@ public class LocalizationManager {
         ru.put("playeresp.colormode", "§7Цвет: §b%s");
         ru.put("playeresp.color", "§7Цвет: §bRGB(%d, %d, %d)");
         ru.put("playeresp.radius", "Радиус: §b%d");
+
+        // MobESP
+        ru.put("mobesp.enabled", "§a✓ MobESP включен");
+        ru.put("mobesp.disabled", "§c✗ MobESP выключен");
+        ru.put("mobesp.mode.set", "§eРежим отображения: §b%s");
+        ru.put("mobesp.colormode.set", "§eРежим цвета: §b%s");
+        ru.put("mobesp.filter.set", "§eФильтр мобов: §b%s");
+        ru.put("mobesp.color.set", "§eЦвет: §bRGB(%d, %d, %d)");
+        ru.put("mobesp.radius.set", "§eРадиус: §b%d");
+        ru.put("mobesp.toggle", "Вкл/Выкл");
+        ru.put("mobesp.status", "§7Статус: %s");
+        ru.put("mobesp.mode", "§7Режим: §b%s");
+        ru.put("mobesp.colormode", "§7Цвет: §b%s");
+        ru.put("mobesp.filter", "§7Фильтр: §b%s");
+        ru.put("mobesp.color", "§7Цвет: §bRGB(%d, %d, %d)");
+        ru.put("mobesp.radius", "Радиус: §b%d");
 
         // AutoSprint
         ru.put("autosprint.enabled", "§a✓ АвтоСпринт включен");
